@@ -3,7 +3,7 @@ FROM python:3.10.12
 WORKDIR /usr/src/app
 
 RUN apt update && apt install -y \
-        firefox
+        firefox-esr
 
 COPY . .
 
