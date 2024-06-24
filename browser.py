@@ -12,7 +12,8 @@ def getOptions(DOWNLOAD_DIRECTORY):
 
     options.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf")
     options.headless = True
-
+    options.add_argument("--headless")
+    
     return options
 
 def WTDownload(url,DOWNLOAD_DIRECTORY):
