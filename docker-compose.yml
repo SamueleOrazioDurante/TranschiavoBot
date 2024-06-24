@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  transchiavobot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+       - ./logs:/logs
+       - ${DOWNLOAD_DIRECTORY}:/downloads
+    env_file:
+       - .env
+    restart: unless-stopped
+    network_mode: "host"
