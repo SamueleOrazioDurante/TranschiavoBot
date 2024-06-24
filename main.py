@@ -23,7 +23,7 @@ bot = telebot.TeleBot(BOT_TOKEN) # instance bot
 
 # wetransfer downloader
 
-DOWNLOAD_DIRECTORY = r"/downloads"
+DOWNLOAD_DIRECTORY = "/usr/src/app/downloads" # default Dockerfile directory
 
 @bot.message_handler(regexp="https://we.tl/") # es https://we.tl/t-9f4P4Jl00w
 def wetransfer_dl(message):
@@ -38,10 +38,11 @@ def wetransfer_dl(message):
         url = r.url
         
         logger.toConsole("Inizio download...")
-        browser.WTDownload(url,DOWNLOAD_DIRECTORY)
-        logger.toConsole("Download completato con successo")
+        
+        text = "Download completato con successo! \nPercorso di download (docker): "+browser.WTDownload(url,DOWNLOAD_DIRECTORY)
+        logger.toConsole(text)
 
-        bot.send_message(message.chat.id,"Download completato con successo!")
+        bot.send_message(message.chat.id,text)
     else:
         logger.log("Accesso non autorizzato!",message)
         bot.send_message(message.chat.id,"Non sei autorizzato ad utilizzare questo bot!!")
